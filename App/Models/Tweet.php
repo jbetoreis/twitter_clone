@@ -37,7 +37,9 @@ class Tweet extends Model{
                 tweets as t
                 left join usuarios as u on (t.id_usuario = u.id)
             where 
-                id_usuario = :id_usuario';
+                id_usuario = :id_usuario
+            order by
+                t.data desc';
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_usuario', $this->__get('id_usuario'));
         $stmt->execute();
